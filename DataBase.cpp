@@ -10,6 +10,7 @@ Status DataBase::maintainObject(char *name, char *op) {
     char state[strlen(DEFAULT_STATE) + 1];
 
     Status readStatus = readState(name, state);
+
     //in case the file needs to be created in a default mode.
     if (readStatus != SUCCESS) return readStatus;
     // in case of a reading with no operation needed.
@@ -50,6 +51,16 @@ Status DataBase::preformAction(char *state, char *op) {
 
 
 ////cube functions//////
+
+
+int DataBase::Cube::cubeOperation(char *state, char *op) {
+    char *escapedOp = escapedOperation(op);
+    for (int i = 0; i < strlen(escapedOp); ++i) {
+        rotateCube(state, move(escapedOp[i]));
+    }
+    return 0;
+}
+
 
 
 int DataBase::Cube::edgeMovement[][4] = {
@@ -131,7 +142,6 @@ int DataBase::Cube::move(const char &move) {
 char *DataBase::Cube::escapedOperation(char *op) {
     return op;
 }
-
 
 
 
