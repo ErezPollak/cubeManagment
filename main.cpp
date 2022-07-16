@@ -27,6 +27,8 @@ int main(int argc, char **argv) {
         return 1;
     }
 
+
+
     if (argv[2] == NULL || isOperation(argv[2])) {
         switch (DataBase::maintainObject(argv[1], argv[2])) {
             case ERROR: {
